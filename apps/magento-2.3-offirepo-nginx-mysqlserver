@@ -74,7 +74,8 @@ bin/magento config:set dev/static/sign 0
 curl https://${CWM_DISPLAYED_ADDRESS} --insecure -o /dev/null
 waitOrStop 0 "Website failed to respond"
 bin/magento setup:static-content:deploy -f
-bin/magento cache:clean
+#bin/magento cache:clean
+bin/magento cache:flush
 waitOrStop 0 "Cleanup actions failed"
 
 echo "Setting nginx config" | log
