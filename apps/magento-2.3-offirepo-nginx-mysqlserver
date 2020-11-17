@@ -101,6 +101,7 @@ descriptionAppend "Magento Email: ${ADMINEMAIL}"
 descriptionAppend "Magento Username: admin"
 descriptionAppend "Magento Password: ${ADMINPASSWORD}" 
 descriptionAppend " "
+cd $appPath
 echo "Flushing Cache"
 bin/magento cache:flush
 tagScript success
