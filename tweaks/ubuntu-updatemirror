@@ -16,10 +16,10 @@ officialMirrors="mirror:\/\/mirrors.ubuntu.com\/mirrors.txt" | log
 
 #sed -i -e 's/http:\/\/il.archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
 
-#backupFile /etc/apt/sources.list
+backupFile /etc/apt/sources.list
 kamateraMirrors=$(sed -n 's/'"${officialDomain}"'/'"${mirrorDomain}"'/gp' /etc/apt/sources.list) | log 
 #ubuntuMirrors=$(sed 's/'"${officialFullDomain}"'/'"${officialMirrors}"'/g' /etc/apt/sources.list) | log
-#echo -e "#Kamatera Mirrors (1st priority)\n$kamateraMirrors\n\n$ubuntuMirrors" > /etc/apt/sources.list | log
+echo -e "#Kamatera Mirrors (1st priority)\n$kamateraMirrors\n\n$ubuntuMirrors" > /etc/apt/sources.list | log
 
 #apt update | log
 
