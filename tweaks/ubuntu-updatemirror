@@ -13,12 +13,16 @@ mirrorDomain="mirror.${CWM_ZONE,,}.kamatera.com" | log
 officialFullDomain="http:\/\/archive.ubuntu.com\/ubuntu" | log
 officialMirrors="mirror:\/\/mirrors.ubuntu.com\/mirrors.txt" | log
 
-backupFile /etc/apt/sources.list
-kamateraMirrors=$(sed -n 's/'"${officialDomain}"'/'"${mirrorDomain}"'/gp' /etc/apt/sources.list) | log 
-ubuntuMirrors=$(sed 's/'"${officialFullDomain}"'/'"${officialMirrors}"'/g' /etc/apt/sources.list) | log
-echo -e "#Kamatera Mirrors (1st priority)\n$kamateraMirrors\n\n$ubuntuMirrors" > /etc/apt/sources.list | log
+echo "mirrorDomain : $mirrorDomain"
+echo "officialFullDomain : $officialFullDomain"
+echo "officialMirrors : $officialMirrors"
 
-apt update | log
+#backupFile /etc/apt/sources.list
+#kamateraMirrors=$(sed -n 's/'"${officialDomain}"'/'"${mirrorDomain}"'/gp' /etc/apt/sources.list) | log 
+#ubuntuMirrors=$(sed 's/'"${officialFullDomain}"'/'"${officialMirrors}"'/g' /etc/apt/sources.list) | log
+#echo -e "#Kamatera Mirrors (1st priority)\n$kamateraMirrors\n\n$ubuntuMirrors" > /etc/apt/sources.list | log
+
+#apt update | log
 
 tagScript success
 
