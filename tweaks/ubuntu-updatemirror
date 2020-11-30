@@ -8,20 +8,17 @@ elif [ -f "../include/startup.sh" ]; then
 fi
 
 echo "Updating Ubuntu mirrors for Kamatera install" | log
-#officialDomain="${CWM_ZONE,,}.archive.ubuntu.com" | log
-officialDomain="archive.ubuntu.com" | log 
-mirrorDomain="mirror.${CWM_ZONE,,}.kamatera.com" | log 
-officialFullDomain="http:\/\/archive.ubuntu.com\/ubuntu" | log
-officialMirrors="mirror:\/\/mirrors.ubuntu.com\/mirrors.txt" | log
-
-#sed -i -e 's/http:\/\/il.archive/mirror:\/\/mirrors/' -e 's/\/ubuntu\//\/mirrors.txt/' /etc/apt/sources.list
+officialDomain="archive.ubuntu.com"
+mirrorDomain="mirror.${CWM_ZONE,,}.kamatera.com"
+officialFullDomain="http:\/\/archive.ubuntu.com\/ubuntu"
+officialMirrors="mirror:\/\/mirrors.ubuntu.com\/mirrors.txt"
 
 backupFile /etc/apt/sources.list
-kamateraMirrors=$(sed -n 's/'"${officialDomain}"'/'"${mirrorDomain}"'/gp' /etc/apt/sources.list) | log 
-ubuntuMirrors=$(sed 's/'"${officialFullDomain}"'/'"${officialMirrors}"'/g' /etc/apt/sources.list) | log
-echo -e "#Kamatera Mirrors (1st priority)\n$kamateraMirrors\n\n$ubuntuMirrors" > /etc/apt/sources.list | log
+kamateraMirrors=$(sed -n 's/'"${officialDomain}"'/'"${mirrorDomain}"'/gp' /etc/apt/sources.list)
+ubuntuMirrors=$(sed 's/'"${officialFullDomain}"'/'"${officialMirrors}"'/g' /etc/apt/sources.list)
+echo -e "#Kamatera Mirrors (1st priority)\n$kamateraMirrors\n\n$ubuntuMirrors" > /etc/apt/sources.list
 
-#apt update | log
+apt update
 
 tagScript success
 
