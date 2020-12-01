@@ -8,7 +8,7 @@ elif [ -f "../include/startup.sh" ]; then
 fi
 
 echo "Updating Ubuntu mirrors for Kamatera install" | log
-officialDomain="archive.ubuntu.com"
+officialDomain="${CWM_ZONE,,}.archive.ubuntu.com"
 mirrorDomain="mirror.${CWM_ZONE,,}.kamatera.com"
 officialFullDomain="http:\/\/archive.ubuntu.com\/ubuntu"
 officialMirrors="mirror:\/\/mirrors.ubuntu.com\/mirrors.txt"
