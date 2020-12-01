@@ -9,25 +9,14 @@ fi
 
 echo "Updating Ubuntu mirrors for Kamatera install" | log
 officialDomain="archive.ubuntu.com"
-echo "officialDomain : $officialDomain" | log 
 mirrorDomain="mirror.${CWM_ZONE,,}.kamatera.com"
-echo "mirrorDomain : $mirrorDomain" | log 
 officialFullDomain="http:\/\/archive.ubuntu.com\/ubuntu"
-echo "officialFullDomain : $officialFullDomain " | log 
 officialMirrors="mirror:\/\/mirrors.ubuntu.com\/mirrors.txt"
-echo "officialMirrors : $officialMirrors" | log 
-devsrcofficialFullDomain="# deb-src http:\/\/archive.ubuntu.com\/ubuntu"
-devsrmirrorDomain="deb-src http:\/\/$mirrorDomain\/ubuntu"
 
 backupFile /etc/apt/sources.list
 kamateraMirrors=$(sed -n 's/'"${officialDomain}"'/'"${mirrorDomain}"'/gp' /etc/apt/sources.list)
-echo "kamateraMirrors : $kamateraMirrors" | log 
 ubuntuMirrors=$(sed 's/'"${officialFullDomain}"'/'"${officialMirrors}"'/g' /etc/apt/sources.list)
-echo "ubuntuMirrors : $ubuntuMirrors" | log 
-devsrc=$(sed 's/'"${devsrcofficialFullDomain}"'/'"${devsrmirrorDomain}"'/g' /etc/apt/sources.list)
-echo "devsrc : $devsrc"
-echo -e "#Kamatera Mirrors (1st priority)\$ndevsrc\n$kamateraMirrors\n$ubuntuMirrors" > /etc/apt/sources.list
-
+echo -e "#Kamatera Mirrors (1st priority)\n$kamateraMirrors\n\n$ubuntuMirrors" > /etc/apt/sources.list
 
 apt update
 
